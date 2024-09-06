@@ -3,7 +3,7 @@
 ## Create and activate Python virtual environment
 ```bash
     python -m venv venv
-    source venv/bin/activate
+    .venv/bin/activate
 ```
 
 ## Install dependencies

@@ -1,27 +1,24 @@
--- Script para crear la base de datos y las tablas necesarias
-CREATE DATABASE IF NOT EXISTS college_manager;
+CREATE DATABASE IF NOT EXISTS Cojinautos_Manizales;
 
-USE college_manager;
+USE Cojinautos_Manizales;
 
--- Tabla para almacenar la información del curso
-CREATE TABLE
-    IF NOT EXISTS courses (
-        id INT AUTO_INCREMENT PRIMARY KEY,
-        name VARCHAR(255) NOT NULL,
-        start_date DATE NOT NULL,
-        end_date DATE NOT NULL,
-        cut1_percentage FLOAT NOT NULL,
-        cut2_percentage FLOAT NOT NULL,
-        cut3_percentage FLOAT NOT NULL
-    );
+CREATE TABLE IF NOT EXISTS customers (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    customer_name VARCHAR(255) NOT NULL,
+    phone VARCHAR(20),
+    email VARCHAR(255),
+    address VARCHAR(255),
+    registration_date DATE
+);
 
--- Tabla para almacenar la lista de estudiantes
-CREATE TABLE
-    IF NOT EXISTS students (
-        id INT AUTO_INCREMENT PRIMARY KEY,
-        code VARCHAR(255) NOT NULL,
-        full_name VARCHAR(255) NOT NULL,
-        emails VARCHAR(255) NOT NULL,
-        course_id INT,
-        FOREIGN KEY (course_id) REFERENCES courses (id) ON DELETE CASCADE
-    );
+CREATE TABLE IF NOT EXISTS services (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    customer_id INT,
+    type_of_service VARCHAR(255),
+    date_of_service DATE,
+    material_used VARCHAR(255),
+    cost DECIMAL(10, 2),
+    responsible_employee VARCHAR(255),
+    FOREIGN KEY (customer_id) REFERENCES customers(id) ON DELETE CASCADE
+);
+

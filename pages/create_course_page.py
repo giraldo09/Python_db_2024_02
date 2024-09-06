@@ -3,6 +3,7 @@ import streamlit as st
 import mysql.connector
 from mysql.connector import Error
 
+
 st.title("Create course")
 name = st.text_input('Course name')
 start_date = st.date_input(label="Start date")
@@ -14,7 +15,7 @@ submit = st.button("Submit")
 
 if submit:
     st.write(f"Course name is: {name}")
-    st.write(f"database name: {os.getenv("DB_NAME")}")
+    st.write(f"database name: {os.getenv('DB_NAME')}")
     try:
         connection = mysql.connector.connect(
             host=os.getenv("DB_HOST"),
@@ -24,10 +25,12 @@ if submit:
         )
         if connection.is_connected():
             cursor = connection.cursor(dictionary=True)
+
             query = """
             INSERT INTO courses (name, start_date, end_date, cut1_percentage, cut2_percentage, cut3_percentage)
             VALUES (%s, %s, %s, %s, %s, %s)
             """
+
             values = (
                 name,
                 start_date,
